@@ -11,6 +11,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'External display adventure'),
+      routes: {
+        "/external" : (context) =>  ExternalDisplay(),
+        },
     );
   }
 }
@@ -59,5 +62,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ),
     );
+  }
+}
+
+
+
+class ExternalDisplay extends StatefulWidget {
+  @override
+  _ExternalDisplayState createState() => _ExternalDisplayState();
+}
+
+class _ExternalDisplayState extends State<ExternalDisplay> {
+
+  int counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(child: Center(child: Text("External counter: $counter"),),),);
   }
 }

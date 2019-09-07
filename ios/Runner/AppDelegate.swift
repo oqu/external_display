@@ -4,7 +4,7 @@ import UIKit
 class ExternalDisplay {
   var additionalWindows = [UIWindow]()
 
-  func setup() {
+    func setup(route : String) {
     NotificationCenter.default.addObserver(forName: .UIScreenDidConnect,
                                            object: nil, queue: nil) { notification in
       // Get the new screen information.
@@ -20,6 +20,7 @@ class ExternalDisplay {
       // Save a reference to the window in a local array.
       self.additionalWindows.append(newWindow)
       let extVC = FlutterViewController()
+      extVC.setInitialRoute(route)
       newWindow.rootViewController = extVC
     }
     NotificationCenter.default.addObserver(forName:
@@ -50,7 +51,7 @@ class ExternalDisplay {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-    extDisplay.setup()
+    extDisplay.setup(route:"/external")
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
